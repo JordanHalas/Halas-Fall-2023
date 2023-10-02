@@ -10,7 +10,8 @@ Wish me luck as I learn about data science and these programs. ;)
 
 
 Notebooks:
-https://colab.research.google.com/drive/10W-q3ZJMBU-pClhYmIpqCUTw5RI7Q9li?usp=sharing
+
+[Notebook1](https://colab.research.google.com/drive/10W-q3ZJMBU-pClhYmIpqCUTw5RI7Q9li?usp=sharing)
 
 
 
