@@ -9,4 +9,12 @@ Wish me luck as I learn about data science and these programs. ;)
 [View Data Deck Presentation](https://docs.google.com/presentation/d/1sMXj07iPq1_dG3vWpH3LzSyr1xFLEq5_JuAzxyavpx4/edit?usp=sharing)
 
 
-Notes
+Notebooks:
+https://colab.research.google.com/drive/10W-q3ZJMBU-pClhYmIpqCUTw5RI7Q9li?usp=sharing
+
+
+
+
+
+
+
