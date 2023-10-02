@@ -12,11 +12,18 @@ Wish me luck as I learn about data science and these programs. ;)
 Notebooks:
 
 [Notebook1](https://colab.research.google.com/drive/10W-q3ZJMBU-pClhYmIpqCUTw5RI7Q9li?usp=sharing)
+
 [Notebook2](https://colab.research.google.com/drive/1YepukYor05NHx0koqzhNEaPMTDpjI-Sa?usp=sharing)
+
 [MNIST Dataset](https://colab.research.google.com/drive/1NTT8UfoaV13p-rqkohWqtzQ2p6ICR2li?usp=sharing)
+
 [Data Dashboards](https://colab.research.google.com/drive/1haNqEs6KHLKlhedb9zDgmwAePYhGVNSJ?usp=sharing)
+
 [WandB](https://colab.research.google.com/drive/1o-mkALwdwlz8h39gamrHPVd17wlzlUNs?usp=sharing)
+
 [Flowers 102](https://colab.research.google.com/drive/1YQ2txm0h41gvxnD_iEU4wmReGZX9hdWA?usp=sharing)
+
 [Conv1](https://colab.research.google.com/drive/1kf0i0P2gFtkuCm5zVO68VT8fP8ryN0Iq?usp=sharing)
+
 [Alexnet](https://colab.research.google.com/drive/1onlVrce4bfYNpHOWysOa3PE4pv15vZo0?usp=sharing)
 
