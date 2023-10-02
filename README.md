@@ -28,5 +28,5 @@ Wish me luck as I learn about data science and these programs. ;)
 
 [Alexnet](https://colab.research.google.com/drive/1onlVrce4bfYNpHOWysOa3PE4pv15vZo0?usp=sharing)
 
-# Homework Set 1
+# My ChatGPT DEMOS
 
