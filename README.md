@@ -9,7 +9,7 @@ Wish me luck as I learn about data science and these programs. ;)
 [View Data Deck Presentation](https://docs.google.com/presentation/d/1sMXj07iPq1_dG3vWpH3LzSyr1xFLEq5_JuAzxyavpx4/edit?usp=sharing)
 
 
-Notebooks:
+# Notebooks:
 
 [Notebook1](https://colab.research.google.com/drive/10W-q3ZJMBU-pClhYmIpqCUTw5RI7Q9li?usp=sharing)
 
@@ -26,4 +26,6 @@ Notebooks:
 [Conv1](https://colab.research.google.com/drive/1kf0i0P2gFtkuCm5zVO68VT8fP8ryN0Iq?usp=sharing)
 
 [Alexnet](https://colab.research.google.com/drive/1onlVrce4bfYNpHOWysOa3PE4pv15vZo0?usp=sharing)
+
+# Homework Set 1
 
