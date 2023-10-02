@@ -6,9 +6,7 @@ Wish me luck as I learn about data science and these programs. ;)
 
 
 08/24 Data Deck - Bread
-
 [View Data Deck Presentation](https://docs.google.com/presentation/d/1sMXj07iPq1_dG3vWpH3LzSyr1xFLEq5_JuAzxyavpx4/edit?usp=sharing)
 
-<https://docs.google.com/presentation/d/1sMXj07iPq1_dG3vWpH3LzSyr1xFLEq5_JuAzxyavpx4/edit?usp=sharing)https://docs.google.com/presentation/d/1sMXj07iPq1_dG3vWpH3LzSyr1xFLEq5_JuAzxyavpx4/edit?usp=sharing
 
 Notes
