@@ -3,37 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Item Picker</title>
+    <title>Random Name Picker</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 36px;
+            text-align: center;
+            color: #333;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #chosen {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Random Item Picker</h2>
+<h2>Random Name Picker</h2>
 
-<div>
-    <label for="items">Enter items (comma separated):</label>
-    <input type="text" id="items" placeholder="e.g. Apple, Orange, Banana">
+<button onclick="pickRandomName()">Pick Random Name</button>
+
+<div id="result">
+    <div id="chosen">Chosen name:</div>
+    <div id="randomName"></div>
 </div>
 
-<button onclick="pickRandomItem()">Pick Random Item</button>
-
-<div id="result"></div>
-
 <script>
-    function pickRandomItem() {
-        // Get the input value and split it into an array
-        const items = document.getElementById('items').value.split(',').map(item => item.trim());
+    const names = [
+        "Alexander", "Alexis", "Alyssa", "Aiden", "Alice", "Andrew", "Amelia", "Anthony",
+        "Brandon", "Baily", "Brittney", "Bryan", "Brianna", "Benjamin", "Brooklyn", "Blake",
+        "Carl", "Carry", "Caroline", "Chris", "Catherine", "Cameron", "Claire", "Caleb",
+        "Dave", "Denise", "Diane", "Dennis", "Danielle", "Daniel", "Diana", "Dominic",
+        "Earl", "Erica", "Emily", "Evan", "Ella", "Elijah", "Eva", "Edward",
+        "Fiona", "Franklin", "Faith", "Frederick", "Felicity", "Finn", "Fiona", "Felix",
+        "Gabrielle", "Garrett", "Grace", "George", "Giselle", "Gavin", "Gianna", "Gideon",
+        "Heather", "Henry", "Haley", "Harrison", "Hannah", "Hudson", "Harper", "Hunter",
+        "Isaac", "Isabella", "Ian", "Ivy", "Ivan", "Isabel", "Isla", "Ibrahim",
+        "Jason", "Jessica", "Jackson", "Julia", "Jacob", "Jasmine", "Jonathan", "Jocelyn",
+        "Kyle", "Katherine", "Kevin", "Kylie", "Kenneth", "Kayla", "Keira", "Kai",
+        "Liam", "Lauren", "Lucas", "Lily", "Logan", "Leah", "Landon", "Lila",
+        "Mason", "Madison", "Matthew", "Mia", "Morgan", "Michael", "Maya", "Miles",
+        "Nathan", "Natalie", "Noah", "Nora", "Nolan", "Naomi", "Nicholas", "Nina",
+        "Oliver", "Olivia", "Oscar", "Olga", "Owen", "Ophelia", "Omar", "Odessa",
+        "Patrick", "Penelope", "Preston", "Paige", "Peter", "Peyton", "Piper", "Phoebe",
+        "Quentin", "Quinn", "Quincy", "Queenie", "Quintin", "Quiana", "Quasar", "Quiana",
+        "Ryan", "Rachel", "Robert", "Rebecca", "Riley", "Rose", "Richard", "Raquel",
+        "Samuel", "Sophia", "Sebastian", "Samantha", "Simon", "Scarlett", "Seth", "Stella",
+        "Tyler", "Taylor", "Thomas", "Trinity", "Trevor", "Tessa", "Theodore", "Tabitha",
+        "Ulysses", "Ursula", "Uriel", "Unity", "Upton", "Ulric", "Una", "Umberto",
+        "Victor", "Vanessa", "Vincent", "Vivian", "Vance", "Valerie", "Violet", "Vladimir",
+        "William", "Whitney", "Walter", "Wendy", "Wesley", "Willow", "Wyatt", "Winnie",
+        "Xavier", "Xena", "Xander", "Xiomara", "Xander", "Xyla", "Xander", "Xyla",
+        "Yuri", "Yvette", "Yusuf", "Yara", "Yannis", "Yasmin", "Yosef", "Yasmina",
+        "Zachary", "Zoey", "Zane", "Zara", "Zeke", "Zoe", "Zachariah", "Zahra",
+        // Expanding the list with at least 7 new names per letter (tripled size)
+        // Boy names for each letter
+        "Adam", "Aaron", "Austin", "Archer", "Asher", "Andrew", "Axel",
+        "Benjamin", "Bryce", "Bennett", "Beckett", "Brayden", "Brody", "Brock",
+        "Caleb", "Colton", "Cooper", "Connor", "Carter", "Chase", "Christopher",
+        "Daniel", "David", "Dominic", "Dylan", "Declan", "Dean", "Derrick",
+        "Ethan", "Elijah", "Evan", "Eli", "Emmett", "Ezra", "Elias",
+        "Finn", "Felix", "Frederick", "Frank", "Fisher", "Fletcher", "Flynn",
+        "Gabriel", "Grayson", "Gavin", "Grant", "Graham", "George", "Gideon",
+        "Henry", "Harrison", "Hudson", "Harrison", "Hunter", "Hugo", "Hayden",
+        "Isaac", "Ian", "Isaiah", "Ivan", "Iker", "Israel", "Ismael",
+        "Jack", "Jackson", "James", "Jacob", "Jaxon", "Jonathan", "Jordan",
+        "Kaden", "Kai", "Kingston", "Knox", "Kyle", "Kylan", "Kaius",
+        "Liam", "Lucas", "Logan", "Leo", "Levi", "Landon", "Lincoln",
+        "Mason", "Max", "Miles", "Milo", "Mateo", "Micah", "Maddox",
+        "Noah", "Nathan", "Nolan", "Nash", "Nico", "Nathaniel", "Neil",
+        "Oliver", "Oscar", "Owen", "Omar", "Orion", "Otto", "Ollie",
+        "Parker", "Preston", "Peter", "Patrick", "Pierce", "Peyton", "Phoenix",
+        "Quentin", "Quincy", "Quinton", "Quinn", "Quillan", "Quest", "Quincy",
+        "Ryan", "Robert", "Reid", "Rhys", "Ryker", "Raymond", "Romeo",
+        "Samuel", "Sebastian", "Sawyer", "Simon", "Silas", "Seth", "Spencer",
+        "Theodore", "Thomas", "Tristan", "Tyler", "Tobias", "Tucker", "Timothy",
+        "Ulysses", "Uriah", "Upton", "Ulric", "Umar", "Ugo", "Usama",
+        "Victor", "Vincent", "Vance", "Vaughn", "Valentine", "Viggo", "Vladimir",
+        "William", "Wesley", "Wyatt", "Walter", "Warren", "Winston", "Weston",
+        "Xavier", "Xander", "Xavi", "Xerxes", "Xylon", "Xayden", "Xane",
+        "Yusuf", "Yosef", "Yussef", "Yuri", "Yannick", "Yohan", "Yael",
+        "Zachary", "Zane", "Zayden", "Zachariah", "Zack", "Zephyr", "Zeke",
+        // Girl names for each letter
+        "Ava", "Amelia", "Aria", "Abigail", "Alice", "Addison", "Audrey",
+        "Bella", "Brooklyn", "Brielle", "Bailey", "Bianca", "Blake", "Bridget",
+        "Chloe", "Charlotte", "Clara", "Cora", "Catalina", "Caroline", "Cassandra",
+        "Daisy", "Diana", "Danielle", "Delilah", "Daphne", "Demi", "Daisy",
+        "Emma", "Emily", "Ella", "Eva", "Eleanor", "Ellie", "Elise",
+        "Faith", "Felicity", "Florence", "Fiona", "Freya", "Finley", "Francesca",
+        "Grace", "Gianna", "Gabriella", "Giselle", "Genevieve", "Gemma", "Guinevere",
+        "Hazel", "Hannah", "Harper", "Hope", "Holly", "Heidi", "Haley",
+        "Isabella", "Ivy", "Isabelle", "Isla", "Imogen", "Ingrid", "Irene",
+        "Julia", "Jasmine", "Josephine", "Jocelyn", "Jade", "Juno", "Jane",
+        "Kylie", "Katherine", "Kennedy", "Keira", "Kayla", "Kara", "Kendall",
+        "Lily", "Lila", "Leah", "Lucy", "Luna", "Layla", "Lydia",
+        "Mia", "Madison", "Mila", "Maya", "Molly", "Melody", "Morgan",
+        "Nora", "Natalie", "Naomi", "Nina", "Nyla", "Norah", "Nova",
+        "Olivia", "Ophelia", "Olga", "Olive", "Octavia", "Odette", "Oona",
+        "Penelope", "Paisley", "Piper", "Phoebe", "Priscilla", "Paige", "Poppy",
+        "Quinn", "Queenie", "Quincy", "Quiana", "Quintessa", "Quintina", "Quasar",
+        "Rose", "Rachel", "Rebecca", "Riley", "Ruby", "Reina", "Raquel",
+        "Sophia", "Scarlett", "Stella", "Sienna", "Serena", "Sabrina", "Samantha",
+        "Taylor", "Trinity", "Tessa", "Thea", "Tabitha", "Thalia", "Tiffany",
+        "Ursula", "Unity", "Uma", "Ulla", "Ulani", "Urszula", "Uriela",
+        "Violet", "Victoria", "Valerie", "Vanessa", "Vivian", "Valentina", "Veronica",
+        "Willow", "Waverly", "Winnie", "Winter", "Wynter", "Wren", "Whitney",
+        "Xena", "Xandra", "Xyla", "Ximena", "Xanthe", "Xia", "Xyla",
+        "Yara", "Yasmin", "Yael", "Yvonne", "Yvette", "Yolanda", "Yara",
+        "Zoe", "Zara", "Zahra", "Zelda", "Zariah", "Zoey", "Zainab",
+        "Zachariah", "Zane", "Zayn", "Zia", "Ziva", "Zephyra", "Zoelle"
+    ];
 
-        // Ensure there are at least 2 items
-        if (items.length < 2) {
-            alert('Please enter at least 2 items.');
-            return;
-        }
-
-        // Pick a random item from the array
-        const randomItem = items[Math.floor(Math.random() * items.length)];
-
-        // Display the result
-        document.getElementById('result').innerText = 'Chosen item: ' + randomItem;
+    function pickRandomName() {
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        document.getElementById('randomName').innerHTML = '<div>' + randomName + '</div>';
     }
 </script>
 
