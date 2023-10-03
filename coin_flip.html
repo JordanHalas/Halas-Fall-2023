@@ -13,8 +13,37 @@
             transform-origin: center;
         }
 
-        .heads, .tails {
+        .heads {
             display: none;
+        }
+
+        .tails {
+            display: none;
+        }
+
+        .heads circle {
+            fill: #8B4513; /* Dark Brown */
+        }
+
+        .tails circle {
+            fill: #A52A2A; /* Saddle Brown */
+        }
+
+        /* Additional shades of brown */
+        .heads1 circle {
+            fill: #5C4033; /* Brown */
+        }
+
+        .tails1 circle {
+            fill: #8B735B; /* Rosy Brown */
+        }
+
+        .heads2 circle {
+            fill: #80461B; /* Sienna */
+        }
+
+        .tails2 circle {
+            fill: #BC8F8F; /* Rosy Brown */
         }
     </style>
 </head>
@@ -22,13 +51,29 @@
     <svg id="coin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <!-- Heads Side -->
         <g class="heads">
-            <circle cx="50" cy="50" r="45" fill="#8B4513"/> <!-- Brown color -->
-            <text x="50" y="60" font-size="24" text-anchor="middle">Heads</text>
+            <circle cx="50" cy="50" r="45" fill="#8B4513"/> <!-- Dark Brown -->
+            <text x="50" y="60" font-size="24" text-anchor="middle" fill="#FFF">Heads</text>
+        </g>
+        <g class="heads1">
+            <circle cx="50" cy="50" r="45" fill="#5C4033"/> <!-- Brown -->
+            <text x="50" y="60" font-size="24" text-anchor="middle" fill="#FFF">Heads</text>
+        </g>
+        <g class="heads2">
+            <circle cx="50" cy="50" r="45" fill="#80461B"/> <!-- Sienna -->
+            <text x="50" y="60" font-size="24" text-anchor="middle" fill="#FFF">Heads</text>
         </g>
         <!-- Tails Side -->
         <g class="tails">
-            <circle cx="50" cy="50" r="45" fill="#8B4513"/> <!-- Brown color -->
-            <text x="50" y="60" font-size="24" text-anchor="middle">Tails</text>
+            <circle cx="50" cy="50" r="45" fill="#A52A2A"/> <!-- Saddle Brown -->
+            <text x="50" y="60" font-size="24" text-anchor="middle" fill="#FFF">Tails</text>
+        </g>
+        <g class="tails1">
+            <circle cx="50" cy="50" r="45" fill="#8B735B"/> <!-- Rosy Brown -->
+            <text x="50" y="60" font-size="24" text-anchor="middle" fill="#FFF">Tails</text>
+        </g>
+        <g class="tails2">
+            <circle cx="50" cy="50" r="45" fill="#BC8F8F"/> <!-- Rosy Brown -->
+            <text x="50" y="60" font-size="24" text-anchor="middle" fill="#FFF">Tails</text>
         </g>
     </svg>
 
@@ -39,31 +84,55 @@
             const coin = document.getElementById('coin');
             const heads = document.querySelector('.heads');
             const tails = document.querySelector('.tails');
+            const heads1 = document.querySelector('.heads1');
+            const tails1 = document.querySelector('.tails1');
+            const heads2 = document.querySelector('.heads2');
+            const tails2 = document.querySelector('.tails2');
 
             // Randomly decide if it's heads or tails
             const isHeads = Math.random() >= 0.5;
-            
+            const shadeIndex = Math.floor(Math.random() * 3) + 1; // Randomly choose a shade
+
             // Reset previous transforms
             coin.style.transform = '';
 
-            // Animate the coin flip
-            const numberOfFlips = Math.floor(Math.random() * 5) + 3; // 3 to 7 flips
-            const rotation = isHeads ? 360 * numberOfFlips : 360 * numberOfFlips + 180;
+            // Animate the coin flip with a more dramatic rotation
+            const rotation = isHeads ? 720 : -720; // Rotate top to bottom for heads, bottom to top for tails
 
-            // Use CSS transition for flip animation
-            coin.style.transition = 'transform 1s';
-            coin.style.transform = `rotateX(${rotation}deg)`; // Changed to rotateX
+            // Use CSS transition for smooth flip animation
+            coin.style.transition = 'transform 2s ease-out';
+            coin.style.transform = `rotateX(${rotation}deg)`; // Rotate along the X-axis
 
-            // After the animation completes, show the final side
+            // After the animation completes, show the final side with the chosen shade
             setTimeout(() => {
+                heads.style.display = 'none';
+                tails.style.display = 'none';
+                heads1.style.display = 'none';
+                tails1.style.display = 'none';
+                heads2.style.display = 'none';
+                tails2.style.display = 'none';
+
                 if (isHeads) {
                     heads.style.display = 'block';
-                    tails.style.display = 'none';
+                    heads1.style.display = 'block';
+                    heads2.style.display = 'block';
                 } else {
-                    heads.style.display = 'none';
                     tails.style.display = 'block';
+                    tails1.style.display = 'block';
+                    tails2.style.display = 'block';
                 }
-            }, 1000); // Wait for 1 second (animation duration)
+
+                // Apply the chosen shade
+                if (isHeads) {
+                    document.querySelector(`.heads${shadeIndex}`).style.display = 'block';
+                } else {
+                    document.querySelector(`.tails${shadeIndex}`).style.display = 'block';
+                }
+
+                // Reset transition and rotation for subsequent flips
+                coin.style.transition = '';
+                coin.style.transform = 'rotate(0deg)';
+            }, 2000); // Wait for 2 seconds (animation duration)
         }
     </script>
 </body>
