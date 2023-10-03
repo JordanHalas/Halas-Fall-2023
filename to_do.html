@@ -5,21 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #task-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #task-input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #timer-container {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        #timer-value {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 50px;
+            margin-right: 5px;
+        }
+
+        #timer-unit {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #add-task-btn {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-item {
+            background-color: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 5px;
+        }
+
         .light {
             margin-right: 10px;
             cursor: pointer;
         }
+
         .delete-btn {
-            margin-left: 10px;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<div>
+<div id="task-container">
     <input type="text" id="task-input" placeholder="Enter a task">
-    <button onclick="addTask()">Add Task</button>
+    <div id="timer-container">
+        <input type="number" id="timer-value" placeholder="Set timer">
+        <select id="timer-unit">
+            <option value="minutes">Minutes</option>
+            <option value="hours">Hours</option>
+            <option value="days">Days</option>
+        </select>
+    </div>
+    <button id="add-task-btn" onclick="addTask()">Add Task</button>
 </div>
 <ul id="todo-list">
     <!-- Tasks will be added here -->
@@ -28,21 +111,36 @@
 <script>
     function addTask() {
         const taskInput = document.getElementById('task-input');
+        const timerValueInput = document.getElementById('timer-value');
+        const timerUnitSelect = document.getElementById('timer-unit');
         const taskValue = taskInput.value.trim();
+        const timerValue = parseInt(timerValueInput.value);
+        const timerUnit = timerUnitSelect.value;
 
-        if (taskValue) {
+        if (taskValue && !isNaN(timerValue) && timerValue > 0) {
             const taskItem = document.createElement('li');
+            const color = getRandomColor();
+
+            const label = getTimerLabel(timerValue, timerUnit);
+
+            taskItem.className = 'task-item';
+            taskItem.style.backgroundColor = color;
 
             taskItem.innerHTML = `
-                <svg width="20" height="20" class="light red" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="16" cy="16" r="15" fill="#FF0000"/>
-                </svg>
-                ${taskValue}
+                <div>
+                    <svg width="20" height="20" class="light red" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="15" fill="#FF0000"/>
+                    </svg>
+                    ${taskValue} - ${label}
+                </div>
                 <span class="delete-btn" onclick="deleteTask(this)">❌</span>
             `;
 
             document.getElementById('todo-list').appendChild(taskItem);
-            taskInput.value = ''; // Clear input
+            taskInput.value = ''; // Clear task input
+            timerValueInput.value = ''; // Clear timer input
+            timerUnitSelect.value = 'minutes'; // Reset timer unit to default
+            startTaskTimer(taskItem, timerValue, timerUnit);
         }
     }
 
@@ -51,16 +149,39 @@
         taskItem.parentNode.removeChild(taskItem);
     }
 
-    document.getElementById('todo-list').addEventListener('click', function(e) {
-        if (e.target && e.target.tagName === 'circle') {
-            const circle = e.target;
-            if (circle.getAttribute('fill') === '#FF0000') {
-                circle.setAttribute('fill', '#00FF00');
-            } else if (circle.getAttribute('fill') === '#00FF00') {
-                circle.setAttribute('fill', '#FF0000');
-            }
+    function getTimerLabel(value, unit) {
+        return `${value} ${unit}`;
+    }
+
+    function convertToMilliseconds(value, unit) {
+        switch (unit) {
+            case 'minutes':
+                return value * 60 * 1000;
+            case 'hours':
+                return value * 60 * 60 * 1000;
+            case 'days':
+                return value * 24 * 60 * 60 * 1000;
+            default:
+                return 0;
         }
-    });
+    }
+
+    function startTaskTimer(taskItem, timerValue, timerUnit) {
+        const timerInMilliseconds = convertToMilliseconds(timerValue, timerUnit);
+        setTimeout(function() {
+            alert(`Time's up for task: ${taskItem.innerText}`);
+            deleteTask(taskItem.querySelector('.delete-btn'));
+        }, timerInMilliseconds);
+    }
+
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 </script>
 
 </body>
