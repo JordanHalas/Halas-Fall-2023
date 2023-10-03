@@ -6,11 +6,11 @@
     <title>Random Dice System</title>
     <style>
         .dot {
-            fill: white;
+            fill: #000; /* Black dots */
             r: 5;  /* radius of each dot */
         }
         #diceBackground {
-            fill: red;  /* Initial color */
+            fill: #555;  /* Darker gray for background */
         }
     </style>
 </head>
@@ -26,20 +26,20 @@
         let lastColor = null;
 
         function rollDice() {
-            var diceValue = Math.floor(Math.random() * 6) + 1;
+            var diceValue = Math.floor(Math.random() * 6) + 1; // Changed to a 6-sided dice
 
             // Clear previous dots (but not the background)
             var circles = document.querySelectorAll('.dot');
             circles.forEach(circle => circle.remove());
 
-            // Define positions for the dots based on dice faces
+            // Define positions for the dots based on the 6-sided dice faces
             const dotPositions = {
                 1: [[50, 50]],
-                2: [[25, 25], [75, 75]],
-                3: [[25, 25], [50, 50], [75, 75]],
-                4: [[25, 25], [25, 75], [75, 25], [75, 75]],
-                5: [[25, 25], [25, 75], [50, 50], [75, 25], [75, 75]],
-                6: [[25, 25], [25, 50], [25, 75], [75, 25], [75, 50], [75, 75]],
+                2: [[20, 80], [80, 20]],
+                3: [[20, 20], [50, 50], [80, 80]],
+                4: [[20, 20], [80, 20], [20, 80], [80, 80]],
+                5: [[20, 20], [80, 20], [50, 50], [20, 80], [80, 80]],
+                6: [[20, 20], [20, 50], [20, 80], [80, 20], [80, 50], [80, 80]],
             };
 
             // Add dots to the SVG based on the dice roll
@@ -53,7 +53,7 @@
             });
 
             // Change the background color for visual indication of a new roll
-            const colors = ["red", "green", "blue", "yellow", "purple", "orange", "pink", "cyan"];
+            const colors = ["#ff0000", "#0000ff", "#00ff00", "#800080", "#ffa500", "#ee82ee", "#808080"];
             
             if (lastColor) {
                 const index = colors.indexOf(lastColor);
