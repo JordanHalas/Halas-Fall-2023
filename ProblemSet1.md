@@ -1,4 +1,5 @@
 # Task 1: Load MNIST and Show Montage
+'''python
 import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import mnist
@@ -16,8 +17,10 @@ plt.imshow(montage, cmap='gray')
 plt.axis('off')
 plt.title('Montage of MNIST Images')
 plt.show()
+'''python
 
 # Task 2: Run Random y=mx Model on MNIST
+'''python
 import numpy as np
 
 m = np.random.rand()
@@ -26,6 +29,7 @@ predictions = m * x_train_flat
 
 print(f"Random Slope (m): {m}")
 print(f"Sample Predictions: {predictions[:5]}")
+'''python
 
 # Task 3: Train random walk model to at least 75%
 from sklearn.model_selection import train_test_split
