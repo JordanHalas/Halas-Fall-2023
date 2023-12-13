@@ -13,6 +13,9 @@ Wish me luck as I learn about data science and these programs. ;)
 
 [View Data NFL Logos](https://docs.google.com/presentation/d/1PhuS5iEJmCqOx9QaCsvElX8WftURC5hgbk_xcYEoyqA/edit?usp=sharing)
 
+# My WebTools
+[WebTools](https://jordanhalas.github.io/Halas-Fall-2023/)
+
 # Notebooks:
 
 [Notebook1](https://colab.research.google.com/drive/10W-q3ZJMBU-pClhYmIpqCUTw5RI7Q9li?usp=sharing)
