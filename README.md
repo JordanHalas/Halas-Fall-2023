@@ -32,5 +32,6 @@ Wish me luck as I learn about data science and these programs. ;)
 [Alexnet](https://colab.research.google.com/drive/1onlVrce4bfYNpHOWysOa3PE4pv15vZo0?usp=sharing)
 
 # Sideline Scout
+[SidelineScout](https://docs.google.com/presentation/d/1PhuS5iEJmCqOx9QaCsvElX8WftURC5hgbk_xcYEoyqA/edit?usp=sharing))
 
 
