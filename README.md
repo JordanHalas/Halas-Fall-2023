@@ -7,8 +7,11 @@ Wish me luck as I learn about data science and these programs. ;)
 
 
 # 08/24 Data Deck - Bread
-[View Data Deck Presentation](https://docs.google.com/presentation/d/1sMXj07iPq1_dG3vWpH3LzSyr1xFLEq5_JuAzxyavpx4/edit?usp=sharing)
+[View Data Deck Bread](https://docs.google.com/presentation/d/1sMXj07iPq1_dG3vWpH3LzSyr1xFLEq5_JuAzxyavpx4/edit?usp=sharing)
 
+[View Data Deck In/out-of-bounds]((https://docs.google.com/presentation/d/1s-3XwArqzks6DPu_DDcLldfSc8wgA9nYkfS7Ku21uXY/edit?usp=sharing))
+
+[View Data NFL Logos](https://docs.google.com/presentation/d/1PhuS5iEJmCqOx9QaCsvElX8WftURC5hgbk_xcYEoyqA/edit?usp=sharing)
 
 # Notebooks:
 
