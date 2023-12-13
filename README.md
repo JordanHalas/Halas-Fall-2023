@@ -19,7 +19,7 @@ Wish me luck as I learn about data science and these programs. ;)
 # Homework
 [Homework1](https://github.com/JordanHalas/Halas-Fall-2023/blob/main/ProblemSet1.md)
 
-[Homework2]()
+[Homework2](https://github.com/JordanHalas/Halas-Fall-2023/blob/main/ProblemSet2.ipynb)
 
 # Notebooks:
 
